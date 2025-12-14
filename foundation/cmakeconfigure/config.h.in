@@ -1,0 +1,7 @@
+#pragma once
+
+#cmakedefine01 USE_BABY
+#cmakedefine01 USE_THREE
+
+#define CMAKE_BINARY_DIR "@CMAKE_BINARY_DIR@/"
+#define CMAKE_SOURCE_DIR "@CMAKE_SOURCE_DIR@/"
