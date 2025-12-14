@@ -3,12 +3,15 @@
 #include <cstdlib>
 #include <fstream>
 #include <string>
-#include <unistd.h>
+#if fmt_FOUND
+#include <fmt/format.h>
+#endif
+#if TBB_FOUND
+#include <tbb/parallel_for.h>
+#endif
 
 int main()
 {
-    chdir(CMAKE_SOURCE_DIR);
-
 #if USE_BABY
     puts("baby mode");
     int age = 3;
@@ -18,7 +21,7 @@ int main()
 #endif
     printf("your age is %d\n", age);
 
-    std::ifstream fin("a.txt");
+    std::ifstream fin(CMAKE_SOURCE_DIR "/a.txt");
     if (!fin) {
         printf("not found: a.txt\n");
         return 1;
@@ -26,5 +29,27 @@ int main()
     std::string str;
     fin >> str;
     printf("%s\n", str.c_str());
-    std::system("ls");
+
+#if fmt_FOUND
+    fmt::print("hello, world\n");
+#else
+    printf("hello, world\n");
+#endif
+
+#if TBB_FOUND
+    tbb::parallel_for(0, 10, [&] (int i) {
+#else
+    #pragma omp parallel for
+    for (int i = 0; i < 10; ++i) {
+#endif
+        printf("%d\n", i);
+#if TBB_FOUND
+    });
+#else
+    }
+#endif
+
+#if XXX_FOUND
+    xxx::func();
+#endif
 }

@@ -3,5 +3,11 @@
 #cmakedefine01 USE_BABY
 #cmakedefine01 USE_THREE
 
-#define CMAKE_BINARY_DIR "@CMAKE_BINARY_DIR@/"
-#define CMAKE_SOURCE_DIR "@CMAKE_SOURCE_DIR@/"
+#define CMAKE_BINARY_DIR "@CMAKE_BINARY_DIR@"
+#define CMAKE_SOURCE_DIR "@CMAKE_SOURCE_DIR@"
+
+#cmakedefine01 fmt_FOUND
+#cmakedefine01 TBB_FOUND
+#cmakedefine01 XXX_FOUND
+
+
